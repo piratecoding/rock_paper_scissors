@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        input {
+            font-size: 2em;
+            margin: 10px 1px 0;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+    function humanPlay() {
+        let pick = prompt('What do you play?');
+        pick = pick.charAt(0).toUpperCase() + pick.slice(1).toLowerCase();
+        console.log(pick);
+        return pick;
+    }
+
+    function computerPlay() {
+        let hand = ['Rock', 'Paper', 'Scissors'];
+        let randomHand = hand[Math.floor(Math.random() * hand.length)];
+        console.log(randomHand);
+        return randomHand;
+    }
+
+    const computerSelection = computerPlay();
+    const playerSelection = humanPlay();
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function playRound(playerSelection, computerSelection) {
+
+        if (playerSelection === computerSelection) {
+            alert('It\'s a draw');
+        } else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
+            alert('You win!');
+            playerScore++;
+        } else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
+            alert('You win!');
+            playerScore++;
+        } else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
+            alert('You win!');
+            playerScore++;
+        } else {
+            alert('You lost!');
+            computerScore++;
+        }
+    }
+
+    function game() {
+        if (playerScore === 5) {
+            alert('You won the game!');
+        } else if (computerScore === 5) {
+            alert('Computer won the game!');
+        } else {
+            let p = humanPlay();
+            let c = computerPlay();
+            playRound(p, c);
+            if (p != '') {
+                game();
+            }
+        }
+    }
+
+    function start() {
+        playerScore = 0;
+        computerScore = 0;
+        game();
+    }
+
+    start();
+
+
+</script>
+</body>
+</html>
